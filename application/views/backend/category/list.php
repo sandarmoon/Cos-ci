@@ -2,7 +2,7 @@
 <div class="app-title">
 
         <div>
-          <h1><i class="fa fa-th-list"></i> Data Table</h1>
+          <h1><i class="fa fa-th-list"></i> Category Table</h1>
           <p>Table to display analytical data effectively</p>
         </div>
         <ul class="app-breadcrumb breadcrumb side">
@@ -11,7 +11,15 @@
           <li class="breadcrumb-item active"><a href="#">Data Table</a></li>
         </ul>
       </div>
-  <h1><?=$message?></h1>
+
+ <?php if($this->session->has_userdata('msg')): ?>
+  <div class="alert alert-success" role="alert">
+  <?=$this->session->userdata('msg');?>
+  </div>
+  
+<?php endif;?>
+<?php $this->session->sess_destroy(); ?>
+ 
       <div class="row">
         <div class="col-md-12">
           <div class="tile">
@@ -35,13 +43,14 @@
                     <tr>
                       <td><?=$i++;?></td>
                       <td><?=$category->name;?></td>
-                      <td><?=$category->created_at;?></td>
+                      <td><?php $date=date_create($category->created_at);
+                      echo date_format($date,'Y-m-d'); ?></td>
                       <td>
-                        <a href="<?=site_url('category/edit/'.$category->id)?>" class="btn btn-outline-danger btn-sm">
-                          delete
-                        </a>
-                         <a href="" class="btn btn-outline-warning btn-sm">
+                        <a href="<?=site_url('category/edit/'.$category->id)?>" class="btn btn-outline-warning btn-sm">
                           Edit
+                        </a>
+                         <a href="<?=site_url('category/delete/'.$category->id)?>" class="btn btn-outline-danger btn-sm">
+                          Delete
                         </a>
                       </td>
                       

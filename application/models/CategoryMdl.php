@@ -34,6 +34,12 @@ class CategoryMdl extends CI_Model{
 		$result=$this->db->update('categories',$data);
 		return $result;
 	}
+
+
+	public function destroy($id){
+		$result=$this->db->delete('categories',array('id'=>$id));
+		return $result; 
+	}
 }
 
 

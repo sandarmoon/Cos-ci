@@ -158,5 +158,7 @@
       	ga('send', 'pageview');
       }
     </script>
+
+    <script src="<?=base_url();?>template/mine.js"></script>
   </body>
 </html>

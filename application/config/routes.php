@@ -60,6 +60,16 @@ $route['category/create'] = 'backend/CategoryCtrl/create';
 $route['category/store'] = 'backend/CategoryCtrl/store';
 $route['category/edit/:num'] = 'backend/CategoryCtrl/edit';
 $route['category/update'] = 'backend/CategoryCtrl/update';
+$route['category/delete/:num'] = 'backend/CategoryCtrl/delete';
+
+//brand routes
+$route['brand'] = 'backend/BrandCtrl';
+$route['brand/create'] = 'backend/BrandCtrl/create';
+$route['brand/store'] = 'backend/BrandCtrl/store';
+$route['brand/edit/:num'] = 'backend/BrandCtrl/edit';
+$route['brand/update'] = 'backend/BrandCtrl/update';
+$route['brand/delete/:num'] = 'backend/BrandCtrl/delete';
+
 
 // $route['404_override'] = '';
 

@@ -20,12 +20,6 @@ class CategoryCtrl extends CI_Controller {
 	 */
 	public function index()
 	{
-	// $session_data = $this->session->userdata('data');
- //    $data['message'] = $session_data['msg']; 
- //    var_dump($data);die();
-		$session_data=$this->session->flashdata('item');
-		var_dump($session_data);die();
-		$data['message'] = $session_data['datsa']; 
 		$data['categories']=$this->CategoryMdl->read();
 		$data['innerData']='backend/category/list';
 		$this->load->view('backend_template',$data);
@@ -35,20 +29,16 @@ class CategoryCtrl extends CI_Controller {
 	{
 		$data['innerData']="backend/category/create";
 		$this->load->view('backend_template',$data);
-		// $result=$this->CategoryMdl->store();
-		// var_dump($result);die();
-		// $data['innerData']='backend/category/list';
-		// $this->load->view('backend_template',$data);
+		
 	}
 
 
 	public function store(){
-		//die('helo');
+		
 		$result=$this->CategoryMdl->store();
-		// var_dump($result);die();
+		
 		redirect('category');
-		// $data['innerData']='backend/category/list';
-		// $this->load->view('backend_template',$data);
+		
 	}
 
 	public function edit(){
@@ -62,9 +52,20 @@ class CategoryCtrl extends CI_Controller {
 	public function update(){
 		$this->CategoryMdl->update();
 		$data=array('msg'=>'successfully updated');
-		$this->load->helper('url');
-		$this->session->set_flashdata('item',$data);
-		 $this->session->keep_flashdata('item');
+		
+		$this->session->set_userdata($data);
+		
 		return redirect('category');
+	}
+
+	public function delete(){
+		$id=$this->uri->segment(3);
+		$this->CategoryMdl->destroy($id);
+		$data=array('msg'=>'successfully deleted');
+		
+		$this->session->set_userdata($data);
+		
+		return redirect('category');
+
 	}
 }
